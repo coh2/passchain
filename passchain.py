@@ -11,7 +11,7 @@ class MarkovChain(object):
 
     def set_state_table(self, tbl, index):
         if len(self._state_tables) <= index:
-            for _ in range(len(self._state_tables)-1, index):
+            for _ in range(len(self._state_tables) - 1, index):
                 self._state_tables.append([])
         self._state_tables[index] = tbl
 
@@ -29,7 +29,7 @@ class MarkovChain(object):
             return None
 
         length = length or random.choice(self._lengths)
-        res = [None,]
+        res = [None, ]
         while len(res) - 1 < length and res.count(None) <= 1:
             entry = self._state_tables[len(res) - 1]
             res.append(find_elem(entry[res[-1]],
@@ -62,7 +62,7 @@ class PassStats(object):
             pos += 1
 
     def add_password(self, new_pass, freq=1):
-        pass_chars = [None,] + [_ for _ in new_pass] + [None,]
+        pass_chars = [None, ] + [_ for _ in new_pass] + [None, ]
         self._add_char_seq(zip(pass_chars, pass_chars[1:]), freq)
         self._lens.update({len(new_pass): freq})
 
@@ -73,8 +73,8 @@ class PassStats(object):
             cumul = 0
             for k, v in counter.items():
                 cumul += v
-                res.append( (cumul/total, k) )
-            return [_ for _ in reversed(res)] + [(0, ''),]
+                res.append((cumul / total, k))
+            return [_ for _ in reversed(res)] + [(0, ''), ]
 
         res = MarkovChain()
         pos = 0
@@ -122,4 +122,3 @@ if __name__ == '__main__':
     #create 10 passwords from the gathered multi-markov chain
     for _ in zip(range(10), m.iterate()):
         print _
-
