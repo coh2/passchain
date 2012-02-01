@@ -16,4 +16,4 @@ out realistically looking passwords.
 
 ## License?
 
-Still todo, but it'll be under an OSI-approved license.
+3-clause BSD. See the file ``LICENSE`` for details.
